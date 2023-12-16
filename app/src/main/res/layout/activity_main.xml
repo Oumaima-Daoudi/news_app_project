@@ -11,7 +11,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="14dp"
-        android:background="#E91E63"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,7 +25,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="37dp"
             android:text="FlashWire"
-            android:textColor="#FFFFFF"
+            android:textColor="#454545"
             android:textSize="27sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
@@ -59,7 +58,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,7 +97,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shapesearchbar"
-                        android:text="Button" />
+                        android:text="Button"
+                        android:textColor="#000000" />
 
                     <Button
                         android:id="@+id/button10"
@@ -106,7 +107,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shapesearchbar"
-                        android:text="Button" />
+                        android:text="Button"
+                        android:textColor="#000000" />
 
                     <Button
                         android:id="@+id/button9"
@@ -115,7 +117,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shapesearchbar"
-                        android:text="Button" />
+                        android:text="Button"
+                        android:textColor="#000000" />
 
                     <Button
                         android:id="@+id/button8"
@@ -124,7 +127,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shapesearchbar"
-                        android:text="Button" />
+                        android:text="Button"
+                        android:textColor="#000000" />
 
                     <Button
                         android:id="@+id/button12"
@@ -133,7 +137,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shapesearchbar"
-                        android:text="Button" />
+                        android:text="Button"
+                        android:textColor="#000000" />
 
                     <Button
                         android:id="@+id/button13"
@@ -142,7 +147,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/shapesearchbar"
-                        android:text="Button" />
+                        android:text="Button"
+                        android:textColor="#000000" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -153,17 +159,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout11"
         android:layout_width="409dp"
-        android:layout_height="576dp"
+        android:layout_height="583dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="407dp"
+            android:layout_height="581dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
