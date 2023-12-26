@@ -16,11 +16,13 @@ class newsAdapter(val data:List<news>): RecyclerView.Adapter<newsAdapter.MyViewH
 
     class MyViewHolder(val row: View, private  val data: List<news>) : RecyclerView.ViewHolder(row)
     {
+
         val image=row.findViewById<ImageView>(R.id.img)
         val textt=row.findViewById<TextView>(R.id.title)
 
         val txt_description  = row.findViewById<TextView>(R.id.description)
         val cardd=row.findViewById<CardView>(R.id.cardView)
+        
         init {
             cardd.setOnClickListener{
                 val intent= Intent(row.context , DetailsPageActivity::class.java)
