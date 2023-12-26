@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">newsApp</string>
     <string name="home_icon_description">home</string>
+    <string name="api_key">899f94652cc1409b927618183f550130</string>
 </resources>

@@ -9,13 +9,18 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.newsapp.Models.NewsHeadlines
 
-class newsAdapter(val data:List<news>): RecyclerView.Adapter<newsAdapter.MyViewHolder>()
+
+class newsAdapter(val data:List<NewsHeadlines>): RecyclerView.Adapter<newsAdapter.MyViewHolder>()
 
 {
 
-    class MyViewHolder(val row: View, private  val data: List<news>) : RecyclerView.ViewHolder(row)
+
+
+    class MyViewHolder(val row: View, private  val data: List<NewsHeadlines>) : RecyclerView.ViewHolder(row)
     {
+
         val image=row.findViewById<ImageView>(R.id.img)
         val textt=row.findViewById<TextView>(R.id.title)
 
@@ -25,12 +30,14 @@ class newsAdapter(val data:List<news>): RecyclerView.Adapter<newsAdapter.MyViewH
             cardd.setOnClickListener{
                 val intent= Intent(row.context , DetailsPageActivity::class.java)
                 intent.putExtra("descrpt", data[adapterPosition].description)
-                intent.putExtra("imageRe",  data[adapterPosition].img)
+                intent.putExtra("imageRe",  data[adapterPosition].urlToImage)
                 intent.putExtra("title", data[adapterPosition].title)
                 row.context.startActivity(intent)
             }
         }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layout=
@@ -40,11 +47,14 @@ class newsAdapter(val data:List<news>): RecyclerView.Adapter<newsAdapter.MyViewH
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item=data[position]
         holder.textt.text=item.title
-        holder.txt_description.text=item.description
+        holder.txt_description.text=item.source.toString()
         //holder.image.setImageResource(item.image)
-        Glide.with(holder.image)
-            .load(item.img)
-            .into(holder.image)
+        if (item.urlToImage != null){
+            Glide.with(holder.image)
+                .load(item.urlToImage)
+                .into(holder.image)
+        }
+
     }
 
     override fun getItemCount(): Int = data.size
