@@ -26,6 +26,7 @@ class newsAdapter(val data:List<NewsHeadlines>): RecyclerView.Adapter<newsAdapte
 
         val txt_description  = row.findViewById<TextView>(R.id.description)
         val cardd=row.findViewById<CardView>(R.id.cardView)
+        
         init {
             cardd.setOnClickListener{
                 val intent= Intent(row.context , DetailsPageActivity::class.java)
