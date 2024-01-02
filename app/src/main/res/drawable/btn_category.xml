@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+    android:padding="25dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:state_pressed="true" android:drawable="@color/red">
+
+    <item android:state_focused="true" android:drawable="@color/green"/>
+    <solid android:color="@color/green"/>
+    <corners android:topLeftRadius="50dp" android:bottomRightRadius="50dp"/>
+    <stroke android:width="4dp" android:color="#F1F0E8" />
+</shape>

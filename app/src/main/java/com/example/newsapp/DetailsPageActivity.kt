@@ -3,13 +3,18 @@ package com.example.newsapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.example.newsapp.Models.NewsHeadlines
 import com.example.newsapp.databinding.ActivityDetailsPageBinding
 
 class DetailsPageActivity : AppCompatActivity() {
+    val headlines : NewsHeadlines?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding:ActivityDetailsPageBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_details_page)
+
+
+
 
         val fieldImae=binding.imageView
         val title=binding.textView2
