@@ -31,8 +31,9 @@ class newsAdapter(val data:List<NewsHeadlines>): RecyclerView.Adapter<newsAdapte
             cardd.setOnClickListener{
                 val intent= Intent(row.context , DetailsPageActivity::class.java)
                 intent.putExtra("descrpt", data[adapterPosition].description)
-                intent.putExtra("imageRe",  data[adapterPosition].urlToImage)
+                intent.putExtra("imageRe",  data[adapterPosition].urlToImage.toString())
                 intent.putExtra("title", data[adapterPosition].title)
+                intent.putExtra("sourceof", data[adapterPosition].source.toString())
                 row.context.startActivity(intent)
             }
         }

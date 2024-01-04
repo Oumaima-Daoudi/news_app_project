@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,13 +18,20 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
 
     val listener: OnFetchDataListener<NewsApiResponse> = object : OnFetchDataListener<NewsApiResponse> {
         override fun OnFetchData(list: MutableList<NewsHeadlines>, message: String) {
-            binding.showNews(list)
-            dialog?.dismiss()
+            if(list.isEmpty()){
+                Toast.makeText(this@MainActivity, "No data found !", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                binding.showNews(list)
+                dialog?.dismiss()
+
+            }
+
 
         }
 
         override fun OnError(message: String) {
-            // Handle error if needed
+            Toast.makeText(this@MainActivity, "Something went wrong please try again", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -35,12 +44,33 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
     var b5: Button?= null
     var b6: Button?= null
     var b7: Button?= null
+     private lateinit var searchview: SearchView
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        searchview=binding.searchView4
+        searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                dialog?.setTitle("Fetching news articles of" + query)
+                dialog?.show()
+                val manager = RequestManager(this@MainActivity)
+                manager.GetNewsHeadlines(listener, "general", query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                return true
+            }
+        })
+
+
+
 
         val manager = RequestManager(this)
         manager.GetNewsHeadlines(listener, "general", null)
