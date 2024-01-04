@@ -1,15 +1,19 @@
 package com.example.newsapp
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.newsapp.Models.NewsHeadlines
 import com.example.newsapp.databinding.ActivityDetailsPageBinding
+
 
 class DetailsPageActivity : AppCompatActivity() {
     val headlines : NewsHeadlines?= null
@@ -17,6 +21,15 @@ class DetailsPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding:ActivityDetailsPageBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_details_page)
+        val actionBar: ActionBar? = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
+
+        val homeIcon: ImageView = findViewById(R.id.homeIcon)
+        homeIcon.setOnClickListener {
+            onBackPressed() // startActivity(Intent(this, MainActivity::class.java))
+        }
 
 
         val totalRatingTextView=binding.totalRatingTextView
@@ -40,6 +53,8 @@ class DetailsPageActivity : AppCompatActivity() {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
         }
+
+
 
         fun updateRatingBarColor(color: Int) {
             val colorStateList = ColorStateList.valueOf(color)
@@ -80,4 +95,6 @@ class DetailsPageActivity : AppCompatActivity() {
 
 
     }
+
+
 }
