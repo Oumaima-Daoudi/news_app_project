@@ -37,7 +37,7 @@ public class RequestManager {
                 @Override
                 public void onResponse(Call<NewsApiResponse> call, Response<NewsApiResponse> response) {
                     if(response.isSuccessful()){
-                        Toast.makeText(context, "Error!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
                     }
                     Listener.OnFetchData(response.body().getArticles(), response.message());
 
