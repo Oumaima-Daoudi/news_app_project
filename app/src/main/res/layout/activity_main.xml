@@ -55,6 +55,8 @@
                 android:id="@+id/searchView4"
                 android:layout_width="240dp"
                 android:layout_height="45dp"
+                android:inputType="text"
+                app:queryHint="enter a keyword ..."
                 android:background="@drawable/shapesearchbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

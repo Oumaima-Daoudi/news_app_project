@@ -31,9 +31,9 @@ class newsAdapter(val data:List<NewsHeadlines>): RecyclerView.Adapter<newsAdapte
             cardd.setOnClickListener{
                 val intent= Intent(row.context , DetailsPageActivity::class.java)
                 intent.putExtra("descrpt", data[adapterPosition].description)
-                intent.putExtra("imageRe",  data[adapterPosition].urlToImage.toString())
+                intent.putExtra("imageRe",  data[adapterPosition].urlToImage)
                 intent.putExtra("title", data[adapterPosition].title)
-                intent.putExtra("sourceof", data[adapterPosition].source.toString())
+                intent.putExtra("sourceof", data[adapterPosition].source.name)
                 row.context.startActivity(intent)
             }
         }
@@ -49,7 +49,7 @@ class newsAdapter(val data:List<NewsHeadlines>): RecyclerView.Adapter<newsAdapte
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item=data[position]
         holder.textt.text=item.title
-        holder.txt_description.text=item.source.toString()
+        holder.txt_description.text=item.source.name.toString()
         //holder.image.setImageResource(item.image)
         if (item.urlToImage != null){
             Glide.with(holder.image)

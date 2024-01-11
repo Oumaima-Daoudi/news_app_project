@@ -3,7 +3,7 @@ package com.example.newsapp.Models;
 import java.io.Serializable;
 import java.util.List;
 
-public class NewsApiResponse implements Serializable {
+public class NewsApiResponse{
     String status ;
     int totalResults;
     List<NewsHeadlines> articles ;

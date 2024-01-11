@@ -52,11 +52,13 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+
+
         searchview=binding.searchView4
         searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
-                dialog?.setTitle("Fetching news articles of" + query)
+                dialog?.setTitle("Fetching news articles of " + query)
                 dialog?.show()
                 val manager = RequestManager(this@MainActivity)
                 manager.GetNewsHeadlines(listener, "general", query)
@@ -65,9 +67,16 @@ class MainActivity : AppCompatActivity() , View.OnClickListener{
 
             override fun onQueryTextChange(newText: String?): Boolean {
 
+
                 return true
             }
         })
+
+        searchview.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                searchview.requestFocus()
+            }
+        }
 
 
 

@@ -2,7 +2,7 @@ package com.example.newsapp.Models;
 
 import java.io.Serializable;
 
-public class NewsHeadlines implements Serializable {
+public class NewsHeadlines {
     Source source = null;
     String author = "";
     String title = "";
