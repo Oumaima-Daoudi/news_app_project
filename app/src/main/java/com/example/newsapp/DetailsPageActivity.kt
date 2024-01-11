@@ -1,5 +1,6 @@
 package com.example.newsapp
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -21,26 +22,25 @@ class DetailsPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding:ActivityDetailsPageBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_details_page)
-        val actionBar: ActionBar? = supportActionBar
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true)
-        }
 
-        val homeIcon: ImageView = findViewById(R.id.homeIcon)
+        val homeIcon= binding.homeIcon
         homeIcon.setOnClickListener {
             onBackPressed() // startActivity(Intent(this, MainActivity::class.java))
         }
+        
 
+
+        val sharedPreferences= getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        var totalRating=sharedPreferences.getFloat("totalRating", 0.0f)
 
         val totalRatingTextView=binding.totalRatingTextView
         var newRating : Double
         val ratingBar=binding.ratingBar
         val evaluateButton=binding.evaluateButton
-        var totalRating=0.0
         var usercount=0
         val fieldImae=binding.imageView
         val title=binding.textView2
-       val sourceof=binding.textView3
+        val sourceof=binding.textView3
         val descrt=binding.textView4
         val callintent=intent
         title.text=callintent.getStringExtra("title")
@@ -61,18 +61,27 @@ class DetailsPageActivity : AppCompatActivity() {
             ratingBar.progressTintList = colorStateList
         }
 
-        evaluateButton.setOnClickListener{
-            val rating=ratingBar.rating
-            if(rating> 0){
-
-                totalRating+=rating
+        evaluateButton.setOnClickListener {
+            val rating = ratingBar.rating
+            if (rating > 0) {
+                totalRating += rating
                 usercount++
 
-                totalRatingTextView.text = "Total Ratings: $usercount"
-                val averageRating=totalRating/rating
+                // Save the updated totalRating and usercount to SharedPreferences
+                with(sharedPreferences.edit()) {
+                    putFloat("totalRating", totalRating)
+                    putInt("usercount", usercount)
+                    apply()
+                }
 
-                when{
-                    usercount>=5 -> {
+                // Retrieve the updated usercount from SharedPreferences
+                usercount = sharedPreferences.getInt("usercount", 0)
+
+                totalRatingTextView.text = "Total Ratings: $usercount"
+                val averageRating = totalRating / usercount.toDouble()
+
+                when {
+                    usercount >= 5 -> {
                         showToast("Great rating! Thank you!")
                         updateRatingBarColor(Color.YELLOW)
                         evaluateButton.isEnabled = true
@@ -86,8 +95,7 @@ class DetailsPageActivity : AppCompatActivity() {
                         updateRatingBarColor(Color.RED)
                     }
                 }
-            }
-            else {
+            } else {
                 showToast("Please provide a rating before evaluating.")
             }
         }

@@ -2,7 +2,7 @@ package com.example.newsapp.Models;
 
 import java.io.Serializable;
 
-public class Source implements Serializable {
+public class Source{
 
     String id = "";
     String name = "";
